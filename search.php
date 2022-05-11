@@ -3,21 +3,6 @@
     session_start();
 
     $mysqli = new mysqli("localhost", "root", "", "unsc_database");
-
-    
-    
-
-    if (isset($_SESSION['user_id'])) {
-        $records = $conn->prepare('SELECT user_id, user_name, user_password FROM users WHERE user_id = :id');
-        $records->bindParam(':id', $_SESSION['user_id']);
-        $records->execute(); 
-        $results = $records->fetch(PDO::FETCH_ASSOC);
-
-        $user = null;
-        if(count($results) > 0) {
-            $user = $results;
-        }
-    }
 ?>
 
 <!DOCTYPE html>
@@ -31,17 +16,26 @@
 
     <?php require 'partials/header.php'?>
     
-    <?php if(!empty($user)): ?>
-        <h1>Hola, bienvenido</h1>
-    <?php endif; ?>
+    <?php 
+    
+    $search = strtolower($_REQUEST['search']);
+    if(empty($search)) {
+        header("Location: /UNSC_database/home.php");
+    } 
+
+    ?>
+
 
     <a class = "log" href="add.php">Agregar </a>
     <a class = "log" href="logout.php">Logout</a>
 
-    <form action="search.php" method="GET" class="search">
-        <input type="search" name="search" placeholder="Buscar"></input>
+    <form action="search.php" method="GET">
+        <input type="search" name="search" placeholder="Buscar" value="<?php echo $search; ?>"></input>
         <input type="submit" value="Buscar"></input>
     </form>
+    
+    
+    
     <div>
         <table>
             <thead>
@@ -55,7 +49,7 @@
             </thead>
             <tbody>
                 <?php 
-                $result = $mysqli->query("SELECT * FROM students_prueba");
+                $result = $mysqli->query("SELECT * FROM students_prueba WHERE student_id LIKE '%$search%' OR student_first_name LIKE '%$search%' OR student_last_name LIKE '%$search%' OR student_degree LIKE '%$search%'");
                 while($row = mysqli_fetch_array($result)) { ?>
                     <tr>
                         <td><?php echo $row['student_id'] ?></td>
