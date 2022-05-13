@@ -27,15 +27,19 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="https://kit.fontawesome.com/2385ce6cbc.js" crossorigin="anonymous"></script>
     <meta charset="utf-8">
     <title>UNSC Base de datos</title>
     <link rel="stylesheet" href="assets/styles/styles.css">
+    <link rel="icon" href="assets/imgs/unsc_logo.ico">
   </head>
   <body>
       <header>
       <a href="/UNSC_database/">Home</a>
       </header>
-        <h1>Iniciar</h1>
+
+        <img src ="assets/imgs/unsc_logo.png" width = "150">
+        <h3>Iniciar</h3>
 
         <?php if(!empty($message)): ?>
           <p><?= $message ?></p>

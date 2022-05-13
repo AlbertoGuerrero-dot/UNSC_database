@@ -1,5 +1,5 @@
 <?php 
-    require 'database.php';
+    require '../database.php';
     $mysqli = new mysqli("localhost", "root", "", "unsc_database");
 
     if(isset($_GET['student_id'])) {
@@ -25,7 +25,7 @@
         $stmt->bindParam( ':degree', $_POST['student_degree']);
 
         if ($stmt->execute()) {
-            header("Location: /UNSC_database/home.php");
+            header("Location: /UNSC_database/students/students.php");
         } else {
             $message = 'Ha ocurrido un error'; 
         }
@@ -38,11 +38,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="assets/styles/styles.css">
+    <link rel="stylesheet" href="../assets/styles/styles.css">
+    <link rel="icon" href="../assets/imgs/unsc_logo.ico">
     <title>Editar</title>
 </head>
 <body>  
-        <?php require 'partials/header.php'?>
+        <?php require '../partials/header.php'?>
 
         <h1>Editar</h1>
         <form action= "edit.php?student_id=<?php echo $_GET['student_id']?>" method="POST">

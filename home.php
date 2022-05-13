@@ -23,8 +23,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://kit.fontawesome.com/2385ce6cbc.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="assets/styles/styles.css">
+    <link rel="icon" href="assets/imgs/unsc_logo.ico">
+    <img class="home_logo" src ="assets/imgs/unsc_logo.png">  
     <title>Home</title>
 </head>
 <body>
@@ -33,44 +36,13 @@
     
     <?php if(!empty($user)): ?>
         <h1>Hola, bienvenido</h1>
-    <?php endif; ?>
+        <?php endif; ?>
+        
+        <img src ="assets/imgs/unsc_logo.png" width = "200">
+        <h1>Bienvenido a UNSC Database</h1>
 
-    <a class = "log" href="add.php">Agregar </a>
-    <a class = "log" href="logout.php">Logout</a>
-
-    <form action="search.php" method="GET" class="search">
-        <input type="search" name="search" placeholder="Buscar"></input>
-        <input type="submit" value="Buscar"></input>
-    </form>
-    <div>
-        <table>
-            <thead>
-                <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Grado</th>
-                <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php 
-                $result = $mysqli->query("SELECT * FROM students_prueba");
-                while($row = mysqli_fetch_array($result)) { ?>
-                    <tr>
-                        <td><?php echo $row['student_id'] ?></td>
-                        <td><?php echo $row['student_first_name'] ?></td>
-                        <td><?php echo $row['student_last_name'] ?></td>
-                        <td><?php echo $row['student_degree'] ?></td>
-                        <td>
-                            <a href="edit.php?student_id=<?php echo $row['student_id']?>">editar</a>
-                            <a href="delete.php?student_id=<?php echo $row['student_id']?>">eliminar</a>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-    </div>
+        <a href="students/students.php">Estudientes</a>
+        <a href="employees/employees.php">Docentes</a>
     
 </body>
 </html>

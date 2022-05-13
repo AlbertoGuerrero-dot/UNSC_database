@@ -1,5 +1,5 @@
 <?php
-    require 'database.php';
+    require '../database.php';
     $mysqli = new mysqli("localhost", "root", "", "unsc_database");
 
     if(isset($_GET['student_id'])) {
@@ -11,7 +11,7 @@
         }
 
         
-        header("Location: /UNSC_database/home.php");
+        header("Location: /UNSC_database/students/students.php");
         
 
     }
